@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace AlunosApi.Migrations
+namespace StudentsApi.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220705003238_popularTabela")]
-    partial class popularTabela
+    [Migration("20220705131055_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,20 +20,20 @@ namespace AlunosApi.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.0");
 
-            modelBuilder.Entity("AlunosApi.Models.Aluno", b =>
+            modelBuilder.Entity("AlunosApi.Models.Student", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<int>("Age")
+                        .HasColumnType("int");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
-
-                    b.Property<int>("Idade")
-                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -42,21 +42,21 @@ namespace AlunosApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Alunos");
+                    b.ToTable("Students");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
+                            Age = 26,
                             Email = "bob@gmail.com",
-                            Idade = 26,
                             Name = "Bob Brown"
                         },
                         new
                         {
                             Id = 2,
+                            Age = 34,
                             Email = "maria@gmail.com",
-                            Idade = 34,
                             Name = "Maria Green"
                         });
                 });

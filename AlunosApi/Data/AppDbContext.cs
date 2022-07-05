@@ -8,13 +8,13 @@ namespace AlunosApi.Data
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
         }
-        public DbSet<Aluno> Alunos { get; set; }
+        public DbSet<Student> Students{ get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Aluno>().HasData(
-            new Aluno(1, "Bob Brown", "bob@gmail.com", 26),
-            new Aluno(2, "Maria Green", "maria@gmail.com", 34)
+            modelBuilder.Entity<Student>().HasData(
+            new Student(1, "Bob Brown", "bob@gmail.com", 26),
+            new Student(2, "Maria Green", "maria@gmail.com", 34)
             );
         }
     }

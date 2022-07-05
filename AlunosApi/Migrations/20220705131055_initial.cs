@@ -1,31 +1,41 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace AlunosApi.Migrations
+namespace StudentsApi.Migrations
 {
-    public partial class Inicial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Alunos",
+                name: "Students",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Idade = table.Column<int>(type: "int", nullable: false)
+                    Age = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Alunos", x => x.Id);
+                    table.PrimaryKey("PK_Students", x => x.Id);
                 });
+
+            migrationBuilder.InsertData(
+                table: "Students",
+                columns: new[] { "Id", "Age", "Email", "Name" },
+                values: new object[] { 1, 26, "bob@gmail.com", "Bob Brown" });
+
+            migrationBuilder.InsertData(
+                table: "Students",
+                columns: new[] { "Id", "Age", "Email", "Name" },
+                values: new object[] { 2, 34, "maria@gmail.com", "Maria Green" });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Alunos");
+                name: "Students");
         }
     }
 }

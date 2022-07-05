@@ -2,7 +2,7 @@
 
 namespace AlunosApi.Models
 {
-    public class Aluno
+    public class Student
     {
         [Key]
         public int Id { get; set; }
@@ -14,14 +14,14 @@ namespace AlunosApi.Models
         [StringLength(100)]
         public string Email { get; set; }
         [Required]
-        public int Idade { get; set; }
+        public int Age { get; set; }
 
-        public Aluno(int id, string name, string email, int idade)
+        public Student(int id, string name, string email, int age)
         {
             Id = id;
             Name = name;
             Email = email;
-            Idade = idade;
+            Age = age;
         }
     }
 }
