@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "YlCgY1zMxE+IEh+rrpYNI8nK5wp5XOkVSwCWaXf97sIw/0S18qWGXjQ92ANwamZ22XWdnbR160+QGswDbyYCqw==",
+  "dgSpecHash": "NjmKloFYTzjy5yadY5rOJkaZniEkAj596QZPYZTZFuaUaObjsefHDf7BxODiiqWqjRB//3sMxiRqC1iYsIIq4A==",
   "success": true,
-  "projectFilePath": "C:\\ws-projetos\\api-react-asp-net\\AlunosApi\\AlunosApi\\AlunosApi.csproj",
+  "projectFilePath": "C:\\ws-projetos\\api-react-asp-net\\AlunosApi\\AlunosApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\julio\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\julio\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
