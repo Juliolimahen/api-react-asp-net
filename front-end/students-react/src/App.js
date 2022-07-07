@@ -11,9 +11,14 @@ function App() {
 
   const [data, setData] = useState([]);
 
+  const [updateData, setUpdateData] = useState(true);
+
   const [modalInsert, setModalInsert] = useState(false);
 
   const [modalEdit, setModalEdit] = useState(false);
+
+  const [modalDelete, setModalDelete] = useState(false);
+
 
   const [studentSelected, setStudentSelected] = useState(
     {
@@ -26,8 +31,8 @@ function App() {
 
   const selectStudent = (student, option) => {
     setStudentSelected(student);
-    (option === "Edit") &&
-      openCloseModalEdit()
+    (option === "Edit") ?
+      openCloseModalEdit() : openCloseModalDelete();
   }
 
   const openCloseModalInsert = () => {
@@ -35,6 +40,10 @@ function App() {
   }
   const openCloseModalEdit = () => {
     setModalEdit(!modalEdit);
+  }
+
+  const openCloseModalDelete = () => {
+    setModalDelete(!modalDelete);
   }
 
   const pedidosGet = async () => {
@@ -52,6 +61,7 @@ function App() {
     await axios.post(baseUrl, studentSelected)
       .then(response => {
         setData(data.concat(response.data));
+        setUpdateData(true);
         openCloseModalInsert();
       }).catch(error => {
         console.log(error);
@@ -59,7 +69,7 @@ function App() {
   }
   const pedidosPut = async () => {
     studentSelected.age = parseInt(studentSelected.age);
-    await axios.put(baseUrl+"/"+studentSelected.id, studentSelected)
+    await axios.put(baseUrl + "/" + studentSelected.id, studentSelected)
       .then(response => {
         var resposta = response.data;
         var dataAux = data;
@@ -70,15 +80,30 @@ function App() {
             student.age = resposta.age;
           }
         });
+        setUpdateData(true);
         openCloseModalEdit();
       }).catch(error => {
         console.log(error);
       })
   }
 
+  const pedidoDelete = async () => {
+    await axios.delete(baseUrl + "/" + studentSelected.id)
+      .then(response => {
+        setData(data.filter(student => student.id !== response.data));
+        setUpdateData(true);
+        openCloseModalDelete();
+      }).catch(error => {
+        console.log(error);
+      })
+  }
+
   useEffect(() => {
-    pedidosGet();
-  })
+    if (updateData) {
+      pedidosGet();
+    }
+    setUpdateData(false);
+  }, [updateData])
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -176,6 +201,17 @@ function App() {
           <button className="btn btn-dark" onClick={() => openCloseModalEdit()}>Cancelar</button>
         </ModalFooter>
       </Modal>
+
+      <Modal isOpen={modalDelete}>
+        <ModalBody>
+          Confirmar a exclusão deste(a) aluno(a): {studentSelected && studentSelected.name}?
+        </ModalBody>
+        <ModalFooter>
+          <button className="btn btn-dark" onClick={() => pedidoDelete()}> Sim </button>
+          <button className="btn btn-dark" onClick={() => openCloseModalDelete()}> Não </button>
+        </ModalFooter>
+      </Modal>
+
     </div>
   );
 }
