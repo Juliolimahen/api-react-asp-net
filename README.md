@@ -8,3 +8,5 @@ Instalar dependências, pacotes
 - Bootstrap: Permite usar o CSS do Bootstrap
 - Reactstrap: Prmite usar os componets React stabeless para o bootstrap embutidos e para as janelas modais;
 - Axios: habilita o cliente HTTP baseado em promises para o navegador e node.js que iremos usar para acessar a API;
+
+## ...EM CONSTRUÇÃO...
